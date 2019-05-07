@@ -1,5 +1,5 @@
 from tensorflow import keras as K
-from Aufrufe1 import *
+from function import *
 import numpy as np
 BatchNormalization = K.layers.BatchNormalization
 Conv2D=K.layers.Conv2D
