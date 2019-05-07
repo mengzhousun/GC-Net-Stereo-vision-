@@ -1,9 +1,9 @@
-from Daten import *
+from preprocessing  import *
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
-from Aufrufe import creat_model
-from Aufrufe1 import *
+from Gc-net classi import creat_model
+from function import *
 batch_size = 1
 dataset = input_from_dataset(buffer=1024)
 dataset_test = input_from_dataset(filename="/daten/b/sceneflow_disp_test.tfrecord", buffer=128)
