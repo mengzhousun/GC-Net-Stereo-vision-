@@ -2,7 +2,7 @@ from preprocessing  import *
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
-from Gc-net classi import creat_model
+from Gc-net-classification import creat_model
 from function import *
 batch_size = 1
 dataset = input_from_dataset(buffer=1024)
