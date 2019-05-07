@@ -1,7 +1,7 @@
 from Aufrufe import creat_model
 import matplotlib.pyplot as plt
-from Aufrufe1 import *
-from Daten import *
+from function import *
+from preprocessing import *
 batch_size = 1
 dataset = input_from_dataset(buffer=1024)
 dataset_test = input_from_dataset(filename="/daten/b/sceneflow_disp_train.tfrecord", buffer=128)
