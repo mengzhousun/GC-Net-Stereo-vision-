@@ -118,3 +118,35 @@ def norm_img(img, label):
         max_val_right_u = max_val_right - min_val_right
 
         # Norm
+        img_l = tf.multiply(img_l, 1. / (max_val_left_u/np.sum(np.abs([r_min, r_max]))))
+        img_l_n = img_l + r_min
+        img_r = tf.multiply(img_r, 1. / (max_val_right_u / np.sum(np.abs([r_min, r_max]))))
+        img_r_n = img_r + r_min
+
+        imge = tf.stack([img_l_n, img_r_n])
+
+    return imge, label
+
+def input_from_dataset(filename="/daten/b/sceneflow_disp_train.tfrecord", kitty=False, batch=1, buffer=1024):
+    with tf.name_scope('input'):
+        # TFRecordDataset opens a protobuf and reads entries line by line
+        # could also be [list, of, filenames]
+        dataset = tf.data.TFRecordDataset(filename)
+
+        # map takes a python function and applies it to every sample
+        if kitty:
+            dataset = dataset.map(decode_kitty, num_parallel_calls=4)
+        else:
+            dataset = dataset.map(decode_sceneflow, num_parallel_calls=4)
+        dataset = dataset.shuffle(buffer)
+
+        dataset = dataset.map(augment, num_parallel_calls=4)
+        dataset = dataset.map(norm_img, num_parallel_calls=4)
+        #dataset = dataset.prefetch(256)
+        #dataset = dataset.batch(batch)
+
+    return dataset
+
+
+
+
