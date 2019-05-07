@@ -1,4 +1,4 @@
-from Aufrufe import creat_model
+from Gc-net-classification import creat_model
 import matplotlib.pyplot as plt
 from function import *
 from preprocessing import *
